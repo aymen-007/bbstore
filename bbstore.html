@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
+
+    <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+
+    <meta charSet="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="preload" href="https://link.brawlstars.com/_next/static/media/01ac8b8d7d5f099c-s.p.woff2" as="font" crossorigin="" type="font/woff2"/>
+    <link rel="preload" href="https://link.brawlstars.com/_next/static/media/37493bf1e3d603d5-s.p.woff2" as="font" crossorigin="" type="font/woff2"/>
+    <link rel="preload" href="https://link.brawlstars.com/_next/static/media/8c3b53925983ecf3-s.p.woff2" as="font" crossorigin="" type="font/woff2"/>
+    <link rel="stylesheet" href="https://link.brawlstars.com/_next/static/css/7143cff67fa067a3.css" data-precedence="next"/>
+    <link rel="stylesheet" href="https://link.brawlstars.com/_next/static/css/f5c47937a5e74594.css" data-precedence="next"/>
+    <link rel="preload" as="script" fetchPriority="low" href="https://link.brawlstars.com/_next/static/chunks/webpack-62b029bd167df1c0.js"/>
+    <script src="https://link.brawlstars.com/_next/static/chunks/fd9d1056-18f015db26aa47e0.js" async=""></script>
+    <script src="https://link.brawlstars.com/_next/static/chunks/117-bbafb155484ec339.js" async=""></script>
+    <script src="https://link.brawlstars.com/_next/static/chunks/main-app-226cd4f338ce36ea.js" async=""></script>
+    <script src="https://link.brawlstars.com/_next/static/chunks/d0f5a89a-718ff327e9c9a3c0.js" async=""></script>
+    <script src="https://link.brawlstars.com/_next/static/chunks/734-e804c00babbadfba.js" async=""></script>
+    <script src="https://link.brawlstars.com/_next/static/chunks/462-65ec532d32db3fd2.js" async=""></script>
+    <script src="https://link.brawlstars.com/_next/static/chunks/app/%5Blocale%5D/page-23842b45e5fc2926.js" async=""></script>
+    <script src="https://link.brawlstars.com/_next/static/chunks/918-840ab3b7c92deded.js" async=""></script>
+    <script src="https://link.brawlstars.com/_next/static/chunks/app/layout-1be6591a44fd14bc.js" async=""></script>
+    
+    <title>Brawl Stars</title>
+    <meta name="description" content="Open link in Brawl Stars or download the game."/>
+    <meta name="monetag" content="a4789bb470bd747d2b73e0447c765ce2"/>
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex, nosnippet"/>
+    <meta property="og:title" content="Brawl Stars"/>
+    <meta property="og:description" content="Open link in Brawl Stars or download the game."/>
+    <meta property="og:image" content="https://link.brawlstars.com/images/game/opengraph.jpg"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Brawl Stars"/>
+    <meta name="twitter:description" content="Open link in Brawl Stars or download the game."/>
+    <meta name="twitter:image" content="https://link.brawlstars.com/images/game/opengraph.jpg"/>
+    <meta name="next-size-adjust"/>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0CQ7964MXY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-0CQ7964MXY');
+    </script>
+    
+    <!-- Script to block cookie consent dialog -->
+    <script>
+        window.addEventListener('load', function() {
+            window.OneTrust = {
+                GetDomainData: function() { return {}; },
+                OnConsentChanged: function() {},
+                IsAlertBoxClosed: function() { return true; },
+                IsConsentRequired: function() { return false; },
+                LoadBanner: function() {},
+                InitializeCookiePolicyHtml: function() {},
+                DoesGpcApply: function() { return false; }
+            };
+            
+            setTimeout(function() {
+                const cookieElements = document.querySelectorAll('[id*="cookie"], [class*="cookie"], [id*="consent"], [class*="consent"], [id*="onetrust"], [class*="onetrust"]');
+                cookieElements.forEach(function(el) {
+                    if (el.parentNode) {
+                        el.parentNode.removeChild(el);
+                    }
+                });
+            }, 1000);
+        });
+    </script>
+    
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(180deg, #3a6aff 0%, #2f5cff 100%);
+        }
+    </style>
+    
+    <!-- Script for automatic language detection based on IP -->
+    <script>
+        // Map of country codes to language codes from dropdown
+        const countryToLanguageMap = {
+            // Arabic speaking countries
+            'SA': 'ar', 'AE': 'ar', 'QA': 'ar', 'KW': 'ar', 'BH': 'ar', 'OM': 'ar', 'JO': 'ar', 'LB': 'ar', 'SY': 'ar', 'IQ': 'ar', 'EG': 'ar', 'LY': 'ar',
+            'DZ': 'ar', 'MA': 'ar', 'TN': 'ar', 'SD': 'ar', 'YE': 'ar',
+            
+            // Chinese speaking regions
+            'CN': 'cn', // Simplified Chinese for mainland China
+            'TW': 'cnt', 'HK': 'cnt', 'MO': 'cnt', // Traditional Chinese
+            
+            // German speaking countries
+            'DE': 'de', 'AT': 'de', 'CH': 'de', 'LI': 'de',
+            
+            // English speaking countries
+            'US': 'en', 'GB': 'en', 'CA': 'en', 'AU': 'en', 'NZ': 'en', 'IE': 'en', 'ZA': 'en', 'SG': 'en',
+            
+            // Spanish speaking countries
+            'ES': 'es', 'MX': 'es', 'CO': 'es', 'AR': 'es', 'PE': 'es', 'VE': 'es', 'CL': 'es', 'EC': 'es', 'GT': 'es',
+            'CU': 'es', 'BO': 'es', 'DO': 'es', 'HN': 'es', 'PY': 'es', 'SV': 'es', 'NI': 'es', 'CR': 'es', 'PA': 'es', 'UY': 'es',
+            
+            // Finnish speaking countries
+            'FI': 'fi',
+            
+            // French speaking countries
+            'FR': 'fr', 'BE': 'fr', 'CH': 'fr', 'LU': 'fr', 'MC': 'fr',
+            
+            // Indonesian
+            'ID': 'id',
+            
+            // Italian speaking countries
+            'IT': 'it', 'CH': 'it', 'SM': 'it', 'VA': 'it',
+            
+            // Japanese
+            'JP': 'jp',
+            
+            // Korean
+            'KR': 'kr',
+            
+            // Malay
+            'MY': 'ms', 'BN': 'ms',
+            
+            // Dutch speaking countries
+            'NL': 'nl', 'BE': 'nl', 'SR': 'nl',
+            
+            // Norwegian
+            'NO': 'no',
+            
+            // Polish
+            'PL': 'pl',
+            
+            // Portuguese speaking countries
+            'PT': 'pt', 'BR': 'pt', 'AO': 'pt', 'MZ': 'pt', 'GW': 'pt', 'CV': 'pt',
+            
+            // Russian speaking countries
+            'RU': 'ru', 'BY': 'ru', 'KZ': 'ru', 'KG': 'ru',
+            
+            // Thai
+            'TH': 'th',
+            
+            // Turkish
+            'TR': 'tr', 'CY': 'tr',
+            
+            // Vietnamese
+            'VN': 'vi'
+        };
+
+        // Function to manually update text content based on selected language
+        function updateTextContentForLanguage(langCode) {
+            // Text content translations for different languages
+            const translations = {
+                'en': {
+                    'open_button': 'Open Brawl Stars',
+                    'download_heading': 'Download Brawl Stars',
+                    'epic_text': 'Epic 3v3 and Battle Royale',
+                    'parent_guide': "Parent's guide",
+                    'terms': 'Terms & Service',
+                    'privacy': 'Privacy Policy'
+                },
+                'es': {
+                    'open_button': 'Abrir Brawl Stars',
+                    'download_heading': 'Descargar Brawl Stars',
+                    'epic_text': '¡3c3 épico y modo de supervivencia!',
+                    'parent_guide': 'Guía para padres',
+                    'terms': 'Condiciones del servicio',
+                    'privacy': 'Política de privacidad'
+                },
+                'fr': {
+                    'open_button': 'Ouvrir Brawl Stars',
+                    'download_heading': 'Télécharger Brawl Stars',
+                    'epic_text': '3c3 et Battle Royale épiques',
+                    'parent_guide': 'Guide parental',
+                    'terms': "Conditions d'utilisation",
+                    'privacy': 'Politique de confidentialité'
+                },
+                'de': {
+                    'open_button': 'Brawl Stars öffnen',
+                    'download_heading': 'Brawl Stars herunterladen',
+                    'epic_text': 'Epische 3v3-Kämpfe und Battle Royale',
+                    'parent_guide': 'Leitfaden für Eltern',
+                    'terms': 'Nutzungsbedingungen',
+                    'privacy': 'Datenschutzrichtlinien'
+                },
+                'it': {
+                    'open_button': 'Apri Brawl Stars',
+                    'download_heading': 'Scarica Brawl Stars',
+                    'epic_text': 'Scontri 3v3 epici in stile battle royale',
+                    'parent_guide': 'Guida genitori',
+                    'terms': "Condizioni d'Uso",
+                    'privacy': 'Normativa sulla privacy'
+                },
+                'pt': {
+                    'open_button': 'Abrir Brawl Stars',
+                    'download_heading': 'Baixar Brawl Stars',
+                    'epic_text': 'Batalhas épicas 3x3 e Último Sobrevivente',
+                    'parent_guide': 'Guia para Pais',
+                    'terms': 'Termos de Uso',
+                    'privacy': 'Política de Privacidade'
+                },
+                'ru': {
+                    'open_button': 'Открыть Brawl Stars',
+                    'download_heading': 'Скачать Brawl Stars',
+                    'epic_text': 'Эпические сражения 3 на 3 и бои на выживание',
+                    'parent_guide': 'Справочник для родителей',
+                    'terms': 'Условия пользования',
+                    'privacy': 'Политика конфиденциальности'
+                },
+                'jp': {
+                    'open_button': 'ブロスタを開く',
+                    'download_heading': 'ブロスタをダウンロード',
+                    'epic_text': '手に汗握る3対3の大乱闘',
+                    'parent_guide': '保護者の皆さまへ',
+                    'terms': 'サービス利用規約',
+                    'privacy': 'プライバシーポリシー'
+                },
+                'kr': {
+                    'open_button': '브롤스타즈 열기',
+                    'download_heading': '브롤스타즈 다운로드',
+                    'epic_text': '굉장한 3v3 및 배틀 로얄',
+                    'parent_guide': '보호자용 가이드',
+                    'terms': '이용 약관',
+                    'privacy': '개인정보 처리방침'
+                },
+                'cn': {
+                    'open_button': '打开《荒野乱斗》',
+                    'download_heading': '下载《荒野乱斗》',
+                    'epic_text': '三人开团 热血对战',
+                    'parent_guide': '家长指南',
+                    'terms': '服务条款',
+                    'privacy': '隐私保护政策'
+                },
+                'tr': {
+                    'open_button': 'Brawl Starsı aç',
+                    'download_heading': 'Brawl Starsı indir',
+                    'epic_text': 'Destansı 3e 3 savaşlar ve Battle Royale',
+                    'parent_guide': 'Ebeveyn Kılavuzu',
+                    'terms': 'Koşullar ve Hizmet',
+                    'privacy': 'Gizlilik Politikası'
+                },
+                'ar': {
+                    'open_button': 'افتح Brawl Stars',
+                    'download_heading': 'تنزيل Brawl Stars',
+                    'epic_text': 'وضع 3 ضد 3 ملحمي ومعركة إقصاء',
+                    'parent_guide': 'دليل الآباء',
+                    'terms': 'الشروط والخدمة',
+                    'privacy': 'سياسة الخصوصية'
+                },
+                'nl': {
+                    'open_button': 'Brawl Stars openen',
+                    'download_heading': 'Brawl Stars downloaden',
+                    'epic_text': 'Epische 3-tegen-3 en battle royale',
+                    'parent_guide': 'Richtlijnen voor ouders',
+                    'terms': 'Algemene voorwaarden',
+                    'privacy': 'Privacybeleid'
+                },
+                'pl': {
+                    'open_button': 'Otwórz Brawl Stars',
+                    'download_heading': 'Pobierz Brawl Stars',
+                    'epic_text': 'Epickie mecze 3 na 3 i Battle Royale',
+                    'parent_guide': 'Informacje dla rodziców',
+                    'terms': 'Regulamin',
+                    'privacy': 'Polityka prywatności'
+                },
+                'th': {
+                    'open_button': 'เปิด Brawl Stars',
+                    'download_heading': 'ดาวน์โหลด Brawl Stars',
+                    'epic_text': 'การสู้แบบ 3v3 และแบทเทิลรอยัลสุดอลังการ',
+                    'parent_guide': 'คำแนะนำผู้ปกครอง',
+                    'terms': 'เงื่อนไขและการบริการ',
+                    'privacy': 'นโยบายความเป็นส่วนตัว'
+                },
+                'vi': {
+                    'open_button': 'Mở Brawl Stars',
+                    'download_heading': 'Tải xuống Brawl Stars',
+                    'epic_text': 'Trận chiến Sinh tồn và 3v3 hoành tráng',
+                    'parent_guide': 'Hướng dẫn dành cho Phụ huynh',
+                    'terms': 'Điều khoản Dịch vụ',
+                    'privacy': 'Chính sách Quyền riêng tư'
+                },
+                'id': {
+                    'open_button': 'Buka Brawl Stars',
+                    'download_heading': 'Unduh Brawl Stars',
+                    'epic_text': 'Laga 3v3 dan Battle Royale yang Epik',
+                    'parent_guide': 'Panduan Orang Tua',
+                    'terms': 'Ketentuan & Layanan',
+                    'privacy': 'Kebijakan Privasi'
+                },
+                'ms': {
+                    'open_button': 'Buka Brawl Stars',
+                    'download_heading': 'Muat Turun Brawl Stars',
+                    'epic_text': '3 lwn 3 dan Battle Royale yang epik',
+                    'parent_guide': 'Panduan Ibu Bapa',
+                    'terms': 'Terma & Perkhidmatan',
+                    'privacy': 'Dasar Privasi'
+                },
+                'no': {
+                    'open_button': 'Åpne Brawl Stars',
+                    'download_heading': 'Last ned Brawl Stars',
+                    'epic_text': 'Episk 3v3 og battle royale',
+                    'parent_guide': 'Foreldreguide',
+                    'terms': 'Vilkår og tjenester',
+                    'privacy': 'Personvernerklæring'
+                },
+                'fi': {
+                    'open_button': 'Avaa Brawl Stars',
+                    'download_heading': 'Lataa Brawl Stars',
+                    'epic_text': 'Eeppinen 3v3 ja battle royale',
+                    'parent_guide': 'Vanhempien opas',
+                    'terms': 'Käyttöehdot',
+                    'privacy': 'Yksityisyyskäytäntö'
+                }
+            };
+            
+            // Use English as fallback if translation not available
+            const translation = translations[langCode] || translations['en'];
+            
+            // Update text content on the page
+            try {
+                // Update open button text
+                const openButton = document.querySelector('#open-game-button span');
+                if (openButton) {
+                    openButton.textContent = translation.open_button;
+                }
+                
+                // Update download heading
+                const downloadHeading = document.querySelector('.styles_download-links-heading__XV9JX');
+                if (downloadHeading) {
+                    downloadHeading.textContent = translation.download_heading;
+                }
+                
+                // Update epic text
+                const epicText = document.querySelector('.lead-wrapper p');
+                if (epicText) {
+                    epicText.textContent = translation.epic_text;
+                }
+                
+                // Update footer links
+                const parentGuide = document.querySelector('#footer-parens');
+                if (parentGuide) {
+                    parentGuide.textContent = translation.parent_guide;
+                }
+                
+                const termsLink = document.querySelector('#footer-tos');
+                if (termsLink) {
+                    termsLink.textContent = translation.terms;
+                }
+                
+                const privacyLink = document.querySelector('#footer-privacy-policy');
+                if (privacyLink) {
+                    privacyLink.textContent = translation.privacy;
+                }
+                
+            } catch (error) {
+                console.error('Error updating text content:', error);
+            }
+        }
+
+        // Function to detect language from IP and set it
+        function detectLanguageFromIP() {
+            // Use ipinfo.io API to get user's location
+            fetch('https://ipinfo.io/json')
+                .then(response => response.json())
+                .then(data => {
+                    // Get the country code
+                    const country = data.country;
+                    
+                    // Get the corresponding language code
+                    let langCode = countryToLanguageMap[country];
+                    
+                    // Default to English if no mapping found
+                    if (!langCode) {
+                        langCode = 'en';
+                    } else {
+                        console.log('Setting language to:', langCode);
+                    }
+                    
+                    // Set the dropdown value
+                    const langSelect = document.getElementById('locales');
+                    if (langSelect) {
+                        // Update text content for the language
+                        updateTextContentForLanguage(langCode);
+                        
+                        // Just set the dropdown value
+                        langSelect.value = langCode;
+                        
+                        // Simulate dropdown change to trigger any listeners
+                        const event = new Event('change', { bubbles: true });
+                        langSelect.dispatchEvent(event);
+                        
+                        // Update URL parameter only (no redirect)
+                        const url = new URL(window.location.href);
+                        url.searchParams.set('lang', langCode);
+                        window.history.replaceState({}, '', url.toString());
+                    }
+                })
+                .catch(error => {
+                    console.error('Error detecting language from IP:', error);
+                    // Fallback to English
+                    updateTextContentForLanguage('en');
+                });
+        }
+
+        // Run language detection when page loads
+        window.addEventListener('load', function() {
+            detectLanguageFromIP();
+            
+            // Also add event listener to the language dropdown to update text content when changed manually
+            const langSelect = document.getElementById('locales');
+            if (langSelect) {
+                langSelect.addEventListener('change', function() {
+                    const selectedLang = this.value;
+                    
+                    // Update text content for the selected language
+                    updateTextContentForLanguage(selectedLang);
+                    
+                    // Update URL parameter only (no redirect)
+                    const url = new URL(window.location.href);
+                    url.searchParams.set('lang', selectedLang);
+                    window.history.replaceState({}, '', url.toString());
+                });
+            }
+        });
+    </script>
+    
+    <!-- Script to make all links except the CPA locker button non-clickable -->
+    <script>
+        window.addEventListener('load', function() {
+            const allLinks = document.querySelectorAll('a');
+
+            allLinks.forEach(function(link) {
+                if (link.id !== 'open-game-button') {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        console.log('Link clicked, but navigation prevented');
+                        return false;
+                    });
+                }
+            });
+        });
+    </script>
+
+    <script src="https://link.brawlstars.com/_next/static/chunks/polyfills-42372ed130431b0a.js" noModule=""></script>
+
+    <script type="text/javascript">
+        var lJMfX_OXh_QZovAc = {"it":4563283,"key":"43e34"};
+    </script>
+
+    <script src="https://d1y0yks1k8t5m5.cloudfront.net/0febccc.js"></script>
+</head>
+<body>
+<script>
+  atOptions = {
+    'key' : '2acf58fdf9d7c20bd4f86c7377dc4ac2',
+    'format' : 'iframe',
+    'height' : 60,
+    'width' : 468,
+    'params' : {}
+  };
+</script>
+<script src="https://onsetcab.com/2acf58fdf9d7c20bd4f86c7377dc4ac2/invoke.js"></script>
+    <div style="text-align:center;background:white;padding:5px;">
+        <script type="text/javascript">
+            aclib.runBanner({
+                zoneId: '11044610',
+            });
+        </script>
+    </div>
+    
+    <section class="__variable_ff1c38 __variable_4a9947">
+        <main class="__variable_ff1c38 __variable_4a9947 styles_main__H_BuV">
+            <div class="language-dropdown-wrapper styles_language-dropdown-wrapper__z8_b8">
+                <select style="width:120px" class="language-dropdown styles_language-dropdown__tj_as" name="locales" id="locales" aria-label="Select a language">
+                    <option value="ar">العربية</option>
+                    <option value="cn">简体中文</option>
+                    <option value="cnt">繁體中文</option>
+                    <option value="de">Deutsch</option>
+                    <option value="en" selected="">English</option>
+                    <option value="es">Español</option>
+                    <option value="fi">Suomi</option>
+                    <option value="fr">Français</option>
+                    <option value="id">Bahasa Indonesia</option>
+                    <option value="it">Italiano</option>
+                    <option value="jp">日本語</option>
+                    <option value="kr">한국어</option>
+                    <option value="ms">Bahasa Melayu</option>
+                    <option value="nl">Nederlands</option>
+                    <option value="no">Norsk</option>
+                    <option value="pl">Polski</option>
+                    <option value="pt">Português</option>
+                    <option value="ru">ру́сский</option>
+                    <option value="th">ไทย</option>
+                    <option value="tr">Türkçe</option>
+                    <option value="vi">Tiếng Việt</option>
+                </select>
+            </div>
+            <div class="styles_contents__ElCjD contents ">
+                <a id="game-home-page" href="https://brawlstars.com">
+                    <img alt="logo" loading="lazy" width="350" height="200" decoding="async" data-nimg="1" class="logo styles_logo__fO964" style="color:transparent" srcSet="https://link.brawlstars.com/images/game/nextImageExportOptimizer/logo-opt-384.WEBP 1x, https://link.brawlstars.com/images/game/nextImageExportOptimizer/logo-opt-750.WEBP 2x" src="https://link.brawlstars.com/images/game/nextImageExportOptimizer/logo-opt-750.WEBP"/>
+                </a>
+                <div class="nested-content styles_nested-content__d5lEy">
+                    <div class="lead-wrapper undefined">
+                        <p>Epic 3v3 and Battle Royale</p>
+                    </div>
+                    <div class="styles_qr-button-wrapper__50IJE qr-button-wrapper">
+                        <a id="open-game-button" href="#" class="styles_button__DNJ4N button" onclick="_Vm()">
+                            <span>Open Brawl Stars</span>
+                        </a>
+                    </div>
+                    <div class="download-links-wrapper styles_download-links-wrapper__Y_api">
+                        <div class="styles_download-links-heading__XV9JX download-links-heading">Download Brawl Stars</div>
+                        <div class="styles_download-links__y17mc download-links" data-links-amount="0"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="styles_footer__1cZ8q">
+            <div class="styles_links__PIaVg links">
+                <div class="styles_links-wrapper__BmrYJ">
+                    <a id="footer-parens" href="https://supercell.com/en/parents/en">Parent's guide</a>
+                    <a id="footer-tos" href="https://supercell.com/en/terms-of-service/en">Terms & Service</a>
+                    <a id="footer-privacy-policy" href="https://supercell.com/en/privacy-policy/en">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="styles_footer-bottom__4Uy_G">
+                <div class="styles_bottom-links__RK3oy">
+                    <a id="footer-supercell-com" href="https://supercell.com">
+                        <img alt="Supercell Logo" loading="lazy" width="52" height="42" decoding="async" data-nimg="1" style="color:transparent;background-size:cover;background-position:50% 50%;background-repeat:no-repeat;background-image:url(https://link.brawlstars.com/en/&quot;/nextImageExportOptimizer/supercell_logo.73c8fcbc-opt-10.WEBP&quot;)" srcSet="https://link.brawlstars.com/nextImageExportOptimizer/supercell_logo.73c8fcbc-opt-64.WEBP 1x, https://link.brawlstars.com/nextImageExportOptimizer/supercell_logo.73c8fcbc-opt-128.WEBP 2x" src="https://link.brawlstars.com/nextImageExportOptimizer/supercell_logo.73c8fcbc-opt-128.WEBP"/>
+                    </a>
+                </div>
+                <div class="styles_social__J7f1N">
+                    <a href="http://www.facebook.com/BrawlStars" aria-label="facebook">
+                        <svg viewBox="0 0 87 87" style="fill:#fff;vertical-align:middle">
+                            <path d="M76.1,0H10.9C4.9,0,0,4.9,0,10.9v65.2C0,82.1,4.9,87,10.9,87h33V55.8H33.5V42.2h10.4v-6.8 c0-10.5,7.7-18.7,17.6-18.7h9.6V32h-8.6c-2.3,0-2.9,1.3-2.9,3.1v7.1h11.5v13.6H59.6V87h16.5c6,0,10.9-4.9,10.9-10.9V10.9 C87,4.9,82.1,0,76.1,0z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://twitter.com/BrawlStars" aria-label="twitter">
+                        <svg width="87" height="87" style="fill:#fff;vertical-align:middle" viewBox="0 0 87 87" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M51.0871 36.3487L80.7758 1.8125H73.7405L47.9618 31.7998L27.3724 1.8125H3.625L34.7602 47.1585L3.625 83.375H10.6607L37.8837 51.7074L59.6276 83.375H83.375L51.0854 36.3487H51.0871ZM41.4508 47.5581L38.2961 43.0426L13.1957 7.11276H24.0021L44.2584 36.1093L47.4131 40.6247L73.7439 78.3158H62.9375L41.4508 47.5598V47.5581Z" fill="white"></path>
+                        </svg>
+                    </a>
+                    <a href="https://instagram.com/BrawlStars" aria-label="instagram">
+                        <svg viewBox="0 0 87 87" style="fill:#fff;vertical-align:middle">
+                            <path d="M25.5.3c-4.6.2-7.8,1-10.6,2-2.9,1.1-5.3,2.6-7.7,5-2.4,2.4-3.9,4.8-5,7.7-1.1,2.8-1.8,5.9-2,10.6C0,30.3,0,31.8,0,43.6s0,13.3.3,17.9c.2,4.6,1,7.8,2,10.6,1.1,2.9,2.6,5.3,5,7.7,2.4,2.4,4.8,3.9,7.7,5,2.8,1.1,5.9,1.8,10.6,2,4.6.2,6.1.2,17.9.2,11.8,0,13.3,0,17.9-.3s7.8-1,10.5-2c2.9-1.1,5.3-2.6,7.7-5s3.9-4.8,5-7.7c1.1-2.8,1.8-5.9,2-10.6.2-4.6.3-6.1.2-17.9,0-11.8,0-13.3-.3-17.9s-1-7.8-2-10.6c-1.1-2.9-2.6-5.3-5-7.7s-4.8-3.9-7.7-5c-2.8-1.1-5.9-1.8-10.6-2S55.2,0,43.4,0s-13.3,0-17.9.3M26,78.9c-4.2-.2-6.5-.9-8.1-1.5-2-.8-3.5-1.7-5-3.2s-2.5-3-3.3-5c-.6-1.5-1.3-3.8-1.5-8.1-.2-4.6-.3-6-.3-17.6,0-11.6,0-13,.2-17.6.2-4.2.9-6.5,1.5-8.1.8-2,1.7-3.5,3.2-5s3-2.5,5-3.3c1.5-.6,3.8-1.3,8.1-1.5,4.6-.2,6-.3,17.6-.3,11.6,0,13,0,17.6.2,4.2.2,6.5.9,8.1,1.5,2,.8,3.5,1.7,5,3.2s2.5,3,3.3,5c.6,1.5,1.3,3.8,1.5,8.1.2,4.6.3,6,.3,17.6,0,11.6,0,13-.2,17.6-.2,4.2-.9,6.5-1.5,8.1-.8,2-1.7,3.5-3.2,5s-3,2.5-5,3.3c-1.5.6-3.8,1.3-8.1,1.5-4.6.2-6,.3-17.6.3s-13,0-17.6-.2M61.4,20.3c0,2.9,2.3,5.2,5.2,5.2s5.2-2.3,5.2-5.2c0-2.9-2.3-5.2-5.2-5.2,0,0,0,0,0,0-2.9,0-5.2,2.3-5.2,5.2M21.2,43.5c0,12.3,10,22.3,22.4,22.3,12.3,0,22.3-10,22.3-22.4s-10-22.3-22.4-22.3-22.3,10-22.3,22.4M29,43.5c0-8,6.5-14.5,14.5-14.5,8,0,14.5,6.5,14.5,14.5,0,8-6.5,14.5-14.5,14.5-8,0-14.5-6.5-14.5-14.5h0"></path>
+                        </svg>
+                    </a>
+                    <a href="http://supr.cl/tiktok-inbox" aria-label="tiktok">
+                        <svg width="87" height="87" viewBox="0 0 87 87" style="fill:#fff;vertical-align:middle" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M81.4423 37.0888C73.6031 37.0888 66.0439 34.5691 60.3045 30.2295V59.3465C60.3045 73.905 48.4057 85.8038 33.8472 85.8038C19.1488 85.8038 7.25 73.905 7.25 59.3465C7.25 44.788 
