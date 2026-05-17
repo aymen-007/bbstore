@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
+<head>
     <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
 
     <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
@@ -450,6 +450,12 @@
 
     <script src="https://d1y0yks1k8t5m5.cloudfront.net/0febccc.js"></script>
 </head>
+<script>
+    // Had lcode kaymsa7 ay zwayd mn l'URL
+    if (window.location.search) {
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+</script>
 <body>
 <script>
   atOptions = {
