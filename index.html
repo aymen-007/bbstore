@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
-
     <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="shortcut icon" href="favicon.ico" />
@@ -16,16 +14,9 @@
     <link rel="preload" href="https://link.brawlstars.com/_next/static/media/8c3b53925983ecf3-s.p.woff2" as="font" crossorigin="" type="font/woff2"/>
     <link rel="stylesheet" href="https://link.brawlstars.com/_next/static/css/7143cff67fa067a3.css" data-precedence="next"/>
     <link rel="stylesheet" href="https://link.brawlstars.com/_next/static/css/f5c47937a5e74594.css" data-precedence="next"/>
-    <link rel="preload" as="script" fetchPriority="low" href="https://link.brawlstars.com/_next/static/chunks/webpack-62b029bd167df1c0.js"/>
-    <script src="https://link.brawlstars.com/_next/static/chunks/fd9d1056-18f015db26aa47e0.js" async=""></script>
-    <script src="https://link.brawlstars.com/_next/static/chunks/117-bbafb155484ec339.js" async=""></script>
-    <script src="https://link.brawlstars.com/_next/static/chunks/main-app-226cd4f338ce36ea.js" async=""></script>
-    <script src="https://link.brawlstars.com/_next/static/chunks/d0f5a89a-718ff327e9c9a3c0.js" async=""></script>
-    <script src="https://link.brawlstars.com/_next/static/chunks/734-e804c00babbadfba.js" async=""></script>
-    <script src="https://link.brawlstars.com/_next/static/chunks/462-65ec532d32db3fd2.js" async=""></script>
-    <script src="https://link.brawlstars.com/_next/static/chunks/app/%5Blocale%5D/page-23842b45e5fc2926.js" async=""></script>
-    <script src="https://link.brawlstars.com/_next/static/chunks/918-840ab3b7c92deded.js" async=""></script>
-    <script src="https://link.brawlstars.com/_next/static/chunks/app/layout-1be6591a44fd14bc.js" async=""></script>
+    <link rel="preconnect" href="https://d1y0yks1k8t5m5.cloudfront.net" crossorigin/>
+    <link rel="dns-prefetch" href="//al5sm.com"/>
+    <link rel="dns-prefetch" href="//5gvci.com"/>
     
     <title>Brawl Stars</title>
     <meta name="description" content="Open link in Brawl Stars or download the game."/>
@@ -358,58 +349,18 @@
             }
         }
 
-        // Function to detect language from IP and set it
-        function detectLanguageFromIP() {
-            // Use ipinfo.io API to get user's location
-            fetch('https://ipinfo.io/json')
-                .then(response => response.json())
-                .then(data => {
-                    // Get the country code
-                    const country = data.country;
-                    
-                    // Get the corresponding language code
-                    let langCode = countryToLanguageMap[country];
-                    
-                    // Default to English if no mapping found
-                    if (!langCode) {
-                        langCode = 'en';
-                    } else {
-                        console.log('Setting language to:', langCode);
-                    }
-                    
-                    // Set the dropdown value
-                    const langSelect = document.getElementById('locales');
-                    if (langSelect) {
-                        // Update text content for the language
-                        updateTextContentForLanguage(langCode);
-                        
-                        // Just set the dropdown value
-                        langSelect.value = langCode;
-                        
-                        // Simulate dropdown change to trigger any listeners
-                        const event = new Event('change', { bubbles: true });
-                        langSelect.dispatchEvent(event);
-                        
-                        // Update URL parameter only (no redirect)
-                        const url = new URL(window.location.href);
-                        url.searchParams.set('lang', langCode);
-                        window.history.replaceState({}, '', url.toString());
-                    }
-                })
-                .catch(error => {
-                    console.error('Error detecting language from IP:', error);
-                    // Fallback to English
-                    updateTextContentForLanguage('en');
-                });
-        }
-
-        // Run language detection when page loads
+        // Keep English by default unless a valid lang query is already present.
         window.addEventListener('load', function() {
-            detectLanguageFromIP();
+            const initialLang = new URLSearchParams(window.location.search).get('lang') || 'en';
+            updateTextContentForLanguage(initialLang);
             
             // Also add event listener to the language dropdown to update text content when changed manually
             const langSelect = document.getElementById('locales');
             if (langSelect) {
+                if (langSelect.querySelector('option[value="' + initialLang + '"]')) {
+                    langSelect.value = initialLang;
+                }
+
                 langSelect.addEventListener('change', function() {
                     const selectedLang = this.value;
                     
@@ -425,52 +376,276 @@
         });
     </script>
     
-    <!-- Script to make all links except the CPA locker button non-clickable -->
+    <!-- Clean translations + country language detection -->
     <script>
-        window.addEventListener('load', function() {
-            const allLinks = document.querySelectorAll('a');
+        (function() {
+            const geoLanguageMapV2 = {
+                SA: 'ar', AE: 'ar', QA: 'ar', KW: 'ar', BH: 'ar', OM: 'ar', JO: 'ar', LB: 'ar', SY: 'ar', IQ: 'ar', EG: 'ar', LY: 'ar',
+                DZ: 'ar', MA: 'ar', TN: 'ar', SD: 'ar', YE: 'ar',
+                CN: 'cn', TW: 'cnt', HK: 'cnt', MO: 'cnt',
+                DE: 'de', AT: 'de', LI: 'de',
+                US: 'en', GB: 'en', CA: 'en', AU: 'en', NZ: 'en', IE: 'en', ZA: 'en', SG: 'en',
+                ES: 'es', MX: 'es', CO: 'es', AR: 'es', PE: 'es', VE: 'es', CL: 'es', EC: 'es', GT: 'es',
+                CU: 'es', BO: 'es', DO: 'es', HN: 'es', PY: 'es', SV: 'es', NI: 'es', CR: 'es', PA: 'es', UY: 'es',
+                FI: 'fi', FR: 'fr', BE: 'fr', CH: 'fr', LU: 'fr', MC: 'fr',
+                ID: 'id', IT: 'it', SM: 'it', VA: 'it', JP: 'jp', KR: 'kr',
+                MY: 'ms', BN: 'ms', NL: 'nl', SR: 'nl', NO: 'no', PL: 'pl',
+                PT: 'pt', BR: 'pt', AO: 'pt', MZ: 'pt', GW: 'pt', CV: 'pt',
+                RU: 'ru', BY: 'ru', KZ: 'ru', KG: 'ru', TH: 'th', TR: 'tr', CY: 'tr', VN: 'vi'
+            };
 
-            allLinks.forEach(function(link) {
-                if (link.id !== 'open-game-button') {
-                    link.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        console.log('Link clicked, but navigation prevented');
+            const localizedTextV2 = {
+                en: ['Open Brawl Stars', 'Download Brawl Stars', 'Epic 3v3 and Battle Royale', "Parent's guide", 'Terms & Service', 'Privacy Policy'],
+                fr: ['Ouvrir Brawl Stars', 'Télécharger Brawl Stars', '3c3 épique et Battle Royale', 'Guide parental', "Conditions d'utilisation", 'Politique de confidentialité'],
+                jp: ['Brawl Starsを開く', 'Brawl Starsをダウンロード', '白熱の3対3バトルとバトルロイヤル', '保護者向けガイド', '利用規約', 'プライバシーポリシー'],
+                es: ['Abrir Brawl Stars', 'Descargar Brawl Stars', '3c3 épico y Battle Royale', 'Guía para padres', 'Términos de servicio', 'Política de privacidad'],
+                de: ['Brawl Stars öffnen', 'Brawl Stars herunterladen', 'Epische 3v3-Kämpfe und Battle Royale', 'Leitfaden für Eltern', 'Nutzungsbedingungen', 'Datenschutzrichtlinie'],
+                it: ['Apri Brawl Stars', 'Scarica Brawl Stars', 'Epiche battaglie 3v3 e Battle Royale', 'Guida per i genitori', 'Termini di servizio', 'Informativa sulla privacy'],
+                pt: ['Abrir Brawl Stars', 'Baixar Brawl Stars', 'Batalhas épicas 3x3 e Battle Royale', 'Guia para pais', 'Termos de serviço', 'Política de privacidade'],
+                ar: ['افتح Brawl Stars', 'تنزيل Brawl Stars', 'معارك 3 ضد 3 وباتل رويال حماسية', 'دليل الآباء', 'شروط الخدمة', 'سياسة الخصوصية'],
+                cn: ['打开《荒野乱斗》', '下载《荒野乱斗》', '精彩3v3和大逃杀', '家长指南', '服务条款', '隐私政策'],
+                cnt: ['開啟《荒野亂鬥》', '下載《荒野亂鬥》', '精彩3對3和大逃殺', '家長指南', '服務條款', '隱私政策'],
+                kr: ['Brawl Stars 열기', 'Brawl Stars 다운로드', '박진감 넘치는 3v3 및 배틀 로얄', '보호자 가이드', '서비스 약관', '개인정보 처리방침'],
+                ru: ['Открыть Brawl Stars', 'Скачать Brawl Stars', 'Эпические бои 3 на 3 и Battle Royale', 'Руководство для родителей', 'Условия обслуживания', 'Политика конфиденциальности'],
+                tr: ["Brawl Stars'ı aç", "Brawl Stars'ı indir", "Efsane 3'e 3 savaşlar ve Battle Royale", 'Ebeveyn kılavuzu', 'Hizmet şartları', 'Gizlilik politikası'],
+                nl: ['Brawl Stars openen', 'Brawl Stars downloaden', 'Epische 3-tegen-3 en Battle Royale', 'Oudergids', 'Servicevoorwaarden', 'Privacybeleid'],
+                pl: ['Otwórz Brawl Stars', 'Pobierz Brawl Stars', 'Epickie mecze 3 na 3 i Battle Royale', 'Przewodnik dla rodziców', 'Warunki korzystania', 'Polityka prywatności'],
+                th: ['เปิด Brawl Stars', 'ดาวน์โหลด Brawl Stars', '3v3 และ Battle Royale สุดมัน', 'คู่มือผู้ปกครอง', 'ข้อกำหนดในการให้บริการ', 'นโยบายความเป็นส่วนตัว'],
+                vi: ['Mở Brawl Stars', 'Tải Brawl Stars', '3v3 và Battle Royale hoành tráng', 'Hướng dẫn dành cho phụ huynh', 'Điều khoản dịch vụ', 'Chính sách quyền riêng tư'],
+                id: ['Buka Brawl Stars', 'Unduh Brawl Stars', 'Laga 3v3 dan Battle Royale yang epik', 'Panduan Orang Tua', 'Ketentuan Layanan', 'Kebijakan Privasi'],
+                ms: ['Buka Brawl Stars', 'Muat Turun Brawl Stars', '3 lawan 3 dan Battle Royale yang epik', 'Panduan Ibu Bapa', 'Terma Perkhidmatan', 'Dasar Privasi'],
+                no: ['Åpne Brawl Stars', 'Last ned Brawl Stars', 'Episk 3v3 og Battle Royale', 'Foreldreguide', 'Vilkår for bruk', 'Personvernerklæring'],
+                fi: ['Avaa Brawl Stars', 'Lataa Brawl Stars', 'Eeppinen 3v3 ja Battle Royale', 'Vanhempien opas', 'Käyttöehdot', 'Tietosuojakäytäntö']
+            };
+
+            function supportsLanguageV2(langCode) {
+                return Object.prototype.hasOwnProperty.call(localizedTextV2, langCode);
+            }
+
+            function setLanguageSelectV2(langCode) {
+                const langSelect = document.getElementById('locales');
+                if (langSelect && langSelect.querySelector('option[value="' + langCode + '"]')) {
+                    langSelect.value = langCode;
+                }
+            }
+
+            function setLanguageUrlV2(langCode) {
+                const url = new URL(window.location.href);
+                url.searchParams.set('lang', langCode);
+                window.history.replaceState({}, '', url.toString());
+            }
+
+            window.updateTextContentForLanguage = function(langCode) {
+                const text = localizedTextV2[langCode] || localizedTextV2.en;
+                const firstClickDone = window.__monetagFirstClickDone || (function() {
+                    try {
+                        return sessionStorage.getItem('monetag_popunder_first_click_done') === '1';
+                    } catch (error) {
                         return false;
+                    }
+                })();
+                const targets = [
+                    document.querySelector('#open-game-button span'),
+                    document.querySelector('.styles_download-links-heading__XV9JX'),
+                    document.querySelector('.lead-wrapper p'),
+                    document.querySelector('#footer-parens'),
+                    document.querySelector('#footer-tos'),
+                    document.querySelector('#footer-privacy-policy')
+                ];
+
+                targets.forEach(function(target, index) {
+                    if (target) {
+                        if (index === 0 && firstClickDone) {
+                            target.textContent = 'Tap Again';
+                        } else {
+                            target.textContent = text[index];
+                        }
+                    }
+                });
+
+                document.documentElement.lang = langCode === 'jp' ? 'ja' : langCode;
+                document.documentElement.dir = langCode === 'ar' ? 'rtl' : 'ltr';
+            };
+
+            function detectVisitorLanguageV2() {
+                const controller = new AbortController();
+                const timeoutId = window.setTimeout(function() {
+                    controller.abort();
+                }, 2500);
+
+                return fetch('https://ipinfo.io/json', {
+                    cache: 'no-store',
+                    signal: controller.signal
+                })
+                    .then(function(response) {
+                        if (!response.ok) {
+                            throw new Error('IP language detection failed');
+                        }
+                        return response.json();
+                    })
+                    .then(function(data) {
+                        const country = String(data.country || '').toUpperCase();
+                        return geoLanguageMapV2[country] || 'en';
+                    })
+                    .catch(function() {
+                        return 'en';
+                    })
+                    .finally(function() {
+                        window.clearTimeout(timeoutId);
+                    });
+            }
+
+            window.addEventListener('load', function() {
+                const requestedLang = new URLSearchParams(window.location.search).get('lang');
+                const initialLang = supportsLanguageV2(requestedLang) ? requestedLang : 'en';
+
+                updateTextContentForLanguage(initialLang);
+                setLanguageSelectV2(initialLang);
+
+                const langSelect = document.getElementById('locales');
+                if (langSelect) {
+                    langSelect.addEventListener('change', function() {
+                        if (supportsLanguageV2(this.value)) {
+                            updateTextContentForLanguage(this.value);
+                            setLanguageUrlV2(this.value);
+                        }
+                    });
+                }
+
+                if (!requestedLang) {
+                    detectVisitorLanguageV2().then(function(detectedLang) {
+                        if (supportsLanguageV2(detectedLang)) {
+                            updateTextContentForLanguage(detectedLang);
+                            setLanguageSelectV2(detectedLang);
+                            setLanguageUrlV2(detectedLang);
+                        }
                     });
                 }
             });
-        });
+        })();
     </script>
 
-    <script src="https://link.brawlstars.com/_next/static/chunks/polyfills-42372ed130431b0a.js" noModule=""></script>
+    <!-- Monetag first-click + AdBlueMedia second-click flow -->
+    <script>
+        (function() {
+            let lockerRetryTimer = null;
+            let monetagLoaded = false;
+            const monetagFirstClickKey = 'monetag_popunder_first_click_done';
+
+            function setButtonText(text) {
+                const buttonText = document.querySelector('#open-game-button span');
+                if (buttonText) {
+                    buttonText.textContent = text;
+                }
+            }
+
+            function appendMonetagScript(src, attrs) {
+                const script = document.createElement('script');
+                script.src = src;
+                script.async = true;
+
+                Object.keys(attrs || {}).forEach(function(name) {
+                    script.setAttribute(name, attrs[name]);
+                });
+
+                (document.body || document.documentElement).appendChild(script);
+            }
+
+            function loadMonetagPopunder() {
+                if (monetagLoaded) {
+                    return;
+                }
+
+                monetagLoaded = true;
+                appendMonetagScript('https://al5sm.com/tag.min.js', {
+                    'data-zone': '11016896'
+                });
+                appendMonetagScript('https://5gvci.com/act/files/tag.min.js?z=11016897', {
+                    'data-cfasync': 'false'
+                });
+            }
+
+            function hasCompletedMonetagClick() {
+                try {
+                    return sessionStorage.getItem(monetagFirstClickKey) === '1';
+                } catch (error) {
+                    return Boolean(window.__monetagFirstClickDone);
+                }
+            }
+
+            function markMonetagClickComplete() {
+                window.__monetagFirstClickDone = true;
+
+                try {
+                    sessionStorage.setItem(monetagFirstClickKey, '1');
+                } catch (error) {}
+            }
+
+            function openAdBlueLocker(event) {
+                if (event) {
+                    event.preventDefault();
+                }
+
+                if (typeof window._Vm === 'function') {
+                    window._Vm();
+                    return false;
+                }
+
+                setButtonText('Loading...');
+
+                if (lockerRetryTimer) {
+                    return false;
+                }
+
+                const startedAt = Date.now();
+                lockerRetryTimer = window.setInterval(function() {
+                    if (typeof window._Vm === 'function') {
+                        window.clearInterval(lockerRetryTimer);
+                        lockerRetryTimer = null;
+                        setButtonText('Open Brawl Stars');
+                        window._Vm();
+                        return;
+                    }
+
+                    if (Date.now() - startedAt > 7000) {
+                        window.clearInterval(lockerRetryTimer);
+                        lockerRetryTimer = null;
+                        setButtonText('Tap Again');
+                    }
+                }, 250);
+
+                return false;
+            }
+
+            window.handleCtaClick = function(event) {
+                loadMonetagPopunder();
+
+                if (!hasCompletedMonetagClick()) {
+                    markMonetagClickComplete();
+                    setButtonText('Tap Again');
+                    return true;
+                }
+
+                return openAdBlueLocker(event);
+            };
+
+            loadMonetagPopunder();
+
+            window.addEventListener('load', function() {
+                if (hasCompletedMonetagClick()) {
+                    setButtonText('Tap Again');
+                }
+            }, { once: true });
+        })();
+    </script>
 
     <script type="text/javascript">
         var lJMfX_OXh_QZovAc = {"it":4563283,"key":"43e34"};
     </script>
 
     <script src="https://d1y0yks1k8t5m5.cloudfront.net/0febccc.js"></script>
-    <script>(function(s){s.dataset.zone='11016896',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-    <script src="https://5gvci.com/act/files/tag.min.js?z=11016897" data-cfasync="false" async></script>
 </head>
 <body>
-<script>
-  atOptions = {
-    'key' : '2acf58fdf9d7c20bd4f86c7377dc4ac2',
-    'format' : 'iframe',
-    'height' : 60,
-    'width' : 468,
-    'params' : {}
-  };
-</script>
-<script src="https://onsetcab.com/2acf58fdf9d7c20bd4f86c7377dc4ac2/invoke.js"></script>
-    <div style="text-align:center;background:white;padding:5px;">
-        <script type="text/javascript">
-            aclib.runBanner({
-                zoneId: '11044610',
-            });
-        </script>
-    </div>
-    
     <section class="__variable_ff1c38 __variable_4a9947">
         <main class="__variable_ff1c38 __variable_4a9947 styles_main__H_BuV">
             <div class="language-dropdown-wrapper styles_language-dropdown-wrapper__z8_b8">
@@ -507,7 +682,7 @@
                         <p>Epic 3v3 and Battle Royale</p>
                     </div>
                     <div class="styles_qr-button-wrapper__50IJE qr-button-wrapper">
-                        <a id="open-game-button" href="#" class="styles_button__DNJ4N button" onclick="_Vm()">
+                        <a id="open-game-button" href="#" class="styles_button__DNJ4N button" onclick="return handleCtaClick(event)">
                             <span>Open Brawl Stars</span>
                         </a>
                     </div>
