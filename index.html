@@ -15,8 +15,7 @@
     <link rel="stylesheet" href="https://link.brawlstars.com/_next/static/css/7143cff67fa067a3.css" data-precedence="next"/>
     <link rel="stylesheet" href="https://link.brawlstars.com/_next/static/css/f5c47937a5e74594.css" data-precedence="next"/>
     <link rel="preconnect" href="https://d1y0yks1k8t5m5.cloudfront.net" crossorigin/>
-    <link rel="dns-prefetch" href="//al5sm.com"/>
-    <link rel="dns-prefetch" href="//5gvci.com"/>
+    <link rel="dns-prefetch" href="//n6wxm.com"/>
     
     <title>Brawl Stars</title>
     <meta name="description" content="Open link in Brawl Stars or download the game."/>
@@ -437,13 +436,6 @@
 
             window.updateTextContentForLanguage = function(langCode) {
                 const text = localizedTextV2[langCode] || localizedTextV2.en;
-                const firstClickDone = window.__monetagFirstClickDone || (function() {
-                    try {
-                        return sessionStorage.getItem('monetag_popunder_first_click_done') === '1';
-                    } catch (error) {
-                        return false;
-                    }
-                })();
                 const targets = [
                     document.querySelector('#open-game-button span'),
                     document.querySelector('.styles_download-links-heading__XV9JX'),
@@ -455,11 +447,7 @@
 
                 targets.forEach(function(target, index) {
                     if (target) {
-                        if (index === 0 && firstClickDone) {
-                            target.textContent = 'Tap Again';
-                        } else {
-                            target.textContent = text[index];
-                        }
+                        target.textContent = text[index];
                     }
                 });
 
@@ -525,60 +513,16 @@
         })();
     </script>
 
-    <!-- Monetag first-click + AdBlueMedia second-click flow -->
+    <!-- AdBlueMedia content locker flow -->
     <script>
         (function() {
             let lockerRetryTimer = null;
-            let monetagLoaded = false;
-            const monetagFirstClickKey = 'monetag_popunder_first_click_done';
 
             function setButtonText(text) {
                 const buttonText = document.querySelector('#open-game-button span');
                 if (buttonText) {
                     buttonText.textContent = text;
                 }
-            }
-
-            function appendMonetagScript(src, attrs) {
-                const script = document.createElement('script');
-                script.src = src;
-                script.async = true;
-
-                Object.keys(attrs || {}).forEach(function(name) {
-                    script.setAttribute(name, attrs[name]);
-                });
-
-                (document.body || document.documentElement).appendChild(script);
-            }
-
-            function loadMonetagPopunder() {
-                if (monetagLoaded) {
-                    return;
-                }
-
-                monetagLoaded = true;
-                appendMonetagScript('https://al5sm.com/tag.min.js', {
-                    'data-zone': '11016896'
-                });
-                appendMonetagScript('https://5gvci.com/act/files/tag.min.js?z=11016897', {
-                    'data-cfasync': 'false'
-                });
-            }
-
-            function hasCompletedMonetagClick() {
-                try {
-                    return sessionStorage.getItem(monetagFirstClickKey) === '1';
-                } catch (error) {
-                    return Boolean(window.__monetagFirstClickDone);
-                }
-            }
-
-            function markMonetagClickComplete() {
-                window.__monetagFirstClickDone = true;
-
-                try {
-                    sessionStorage.setItem(monetagFirstClickKey, '1');
-                } catch (error) {}
             }
 
             function openAdBlueLocker(event) {
@@ -610,7 +554,7 @@
                     if (Date.now() - startedAt > 7000) {
                         window.clearInterval(lockerRetryTimer);
                         lockerRetryTimer = null;
-                        setButtonText('Tap Again');
+                        setButtonText('Try Again');
                     }
                 }, 250);
 
@@ -618,24 +562,8 @@
             }
 
             window.handleCtaClick = function(event) {
-                loadMonetagPopunder();
-
-                if (!hasCompletedMonetagClick()) {
-                    markMonetagClickComplete();
-                    setButtonText('Tap Again');
-                    return true;
-                }
-
                 return openAdBlueLocker(event);
             };
-
-            loadMonetagPopunder();
-
-            window.addEventListener('load', function() {
-                if (hasCompletedMonetagClick()) {
-                    setButtonText('Tap Again');
-                }
-            }, { once: true });
         })();
     </script>
 
@@ -644,6 +572,7 @@
     </script>
 
     <script src="https://d1y0yks1k8t5m5.cloudfront.net/0febccc.js"></script>
+    <script>(function(s){s.dataset.zone='11053686',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 </head>
 <body>
     <section class="__variable_ff1c38 __variable_4a9947">
